@@ -11,19 +11,25 @@ use Doctrine\Persistence\ManagerRegistry;
 
 final class ContactoController extends AbstractController
 {
-    #[Route('/contacto', name: 'app_contacto')]
-    public function index(): JsonResponse
-    {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/ContactoController.php',
-        ]);
+    private $contactos = [
+
+        1 => ["nombre" => "Juan Pérez", "telefono" => "524142432", "email" => "juanp@ieselcaminas.org"],
+
+        2 => ["nombre" => "Ana López", "telefono" => "58958448", "email" => "anita@ieselcaminas.org"],
+
+        5 => ["nombre" => "Mario Montero", "telefono" => "5326824", "email" => "mario.mont@ieselcaminas.org"],
+
+        7 => ["nombre" => "Laura Martínez", "telefono" => "42898966", "email" => "lm2000@ieselcaminas.org"],
+
+        9 => ["nombre" => "Nora Jover", "telefono" => "54565859", "email" => "norajover@ieselcaminas.org"]
+
+    ];     
+
+    #[Route('/contacto/{codigo?1}', name: 'ficha_contacto')]
+    public function ficha ($codigo): Response{
+        $resultado = ($this->contactos[$codigo] ?? null);
+
+        return $this->render('ficha_contacto.html.twig', ['contacto'=> $resultado]);
     }
 
-    #[Route('/contacto/{codigo}', name: 'ficha_contacto')]
-    public function ficha(ManagerRegistry $doctrine, $codigo): Response
-    {
-
-        return new Response("Datos del contacto con código $codigo");
-    }
 }
