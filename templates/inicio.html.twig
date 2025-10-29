@@ -1,17 +1,9 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
-
 	<h1>Contactos</h1>
-
 	<h2>Bienvenido a la web de contactos.</h2>
-
 	<p>Página de inicio</p>
-
 	{% for contacto in contactos %}
-
-		 {{ include ('partials/datos_contacto.html.twig', {'contacto': contacto})}}
-
+		 {{ include('partials/datos_contacto.html.twig', {'contacto': contacto}) }}
 	{% endfor %}
-
 {% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo contacto{% endblock %}
+
+{% block body %}
+
+{{ form_start(formulario, {'attr': {'novalidate': 'novalidate'}}) }}
+
+    <h1>Nuevo contacto</h1>
+
+    {{ form(formulario) }}
+
+{% endblock %}

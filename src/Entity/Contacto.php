@@ -8,7 +8,7 @@ use App\Repository\ContactoRepository;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactoRepository::class)]
 
@@ -28,19 +28,36 @@ class Contacto
 
     #[ORM\Column(length: 255)]
 
+    #[Assert\NotBlank]
+
     private ?string $nombre = null;
 
 
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 15)]
+
+    #[Assert\NotBlank]
 
     private ?string $telefono = null;
 
 
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string", length: 255)]
+
+    #[Assert\NotBlank]
+
+    #[Assert\Email(message: "El email {{ value }} no es válido")]
+    
 
     private ?string $email = null;
+
+
+
+    #[ORM\ManyToOne(inversedBy: 'contactos')]
+
+    #[Assert\NotBlank]
+
+    private ?Provincia $provincia = null;
 
 
 
@@ -64,7 +81,7 @@ class Contacto
 
 
 
-    public function setNombre(string $nombre): static
+    public function setNombre(?string $nombre): self
 
     {
 
@@ -88,7 +105,7 @@ class Contacto
 
 
 
-    public function setTelefono(string $telefono): static
+    public function setTelefono(?string $telefono): self
 
     {
 
@@ -112,11 +129,35 @@ class Contacto
 
 
 
-    public function setEmail(string $email): static
+    public function setEmail(?string $email): self
 
     {
 
         $this->email = $email;
+
+
+
+        return $this;
+
+    }
+
+
+
+    public function getProvincia(): ?Provincia
+
+    {
+
+        return $this->provincia;
+
+    }
+
+
+
+    public function setProvincia(?Provincia $provincia): self
+
+    {
+
+        $this->provincia = $provincia;
 
 
 

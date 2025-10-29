@@ -9,9 +9,9 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class PageController extends AbstractController
 {
-    #[Route('/', name: 'inicio')]
-    public function inicio(): Response
-    {
-        return $this->render('inicio.html.twig');
-    }
+    // #[Route('/', name: 'inicio')]
+    // public function inicio(): Response
+    // {
+    //     return $this->render('inicio.html.twig');
+    // }
 }
