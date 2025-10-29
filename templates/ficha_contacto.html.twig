@@ -1,10 +1,26 @@
 {% extends 'base.html.twig'%}
 {% block title %}Contactos{% endblock %}
 {% block body %}
-    <h1>Ficha del contacto</h1>
-    {% if contacto%}
-        {{ include('partials/datos_contacto.html.twig', {'contacto': contacto }) }}
-    {% else %}
-        <h4>Contacto no encontrado</h4>
-    {% endif %}
+<h1>Ficha del contacto</h1>
+
+{% if contacto %}
+    {{ include('partials/datos_contacto.html.twig', {'contacto': contacto }) }}
+
+    <h2>{{ contacto.nombre }}</h2>
+    <p>{{ contacto.telefono }}</p>
+    <p>{{ contacto.email }}</p>
+
+    <form method="post" action="{{ path('ficha_contacto', {'codigo': contacto.id}) }}">
+        <input type="text" name="nombre" value="{{ contacto.nombre }}">
+        <input type="text" name="telefono" value="{{ contacto.telefono }}">
+        <input type="email" name="email" value="{{ contacto.email }}">
+
+        <button type="submit" name="accion" value="guardar">Guardar</button>
+        <button type="submit" name="accion" value="borrar">Borrar</button>
+    </form>
+
+{% else %}
+    <h4>Contacto no encontrado</h4>
+{% endif %}
+
 {% endblock %}

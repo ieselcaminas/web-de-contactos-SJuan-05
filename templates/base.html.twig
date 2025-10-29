@@ -34,6 +34,16 @@
 
     <body>
 
+        <nav class="navbar navbar-light bg-light p-2 mb-3">
+            {% if app.user %}
+                <span class="me-3">¡Hola, {{ app.user.name }}!</span>
+                <a class="btn btn-outline-danger btn-sm" href="{{ path('app_logout') }}">Cerrar sesión</a>
+            {% else %}
+                <a class="btn btn-outline-primary btn-sm me-2" href="{{ path('app_login') }}">Iniciar sesión</a>
+                <a class="btn btn-outline-success btn-sm" href="{{ path('app_register') }}">Registrarse</a>
+            {% endif %}
+        </nav>
+
         {% block body %}{% endblock %}
 
     </body>

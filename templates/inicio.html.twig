@@ -6,4 +6,19 @@
 	{% for contacto in contactos %}
 		 {{ include('partials/datos_contacto.html.twig', {'contacto': contacto}) }}
 	{% endfor %}
+
+	<ul>
+	{% for contacto in contactos %}
+    	<li>
+        	<a href="{{ path('ficha_contacto', {'codigo': contacto.id}) }}">
+            	{{ contacto.nombre }}
+        	</a>
+    	</li>
+	{% endfor %}
+	</ul>
+
+	<a href="{{ path('insertar_contacto') }}">Añadir 5 contactos sin provincia</a>
+	<br>
+	<a href="{{ path('nuevo') }}">Añadir contacto</a>
+
 {% endblock %}
